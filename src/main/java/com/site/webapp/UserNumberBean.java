@@ -17,7 +17,9 @@ public class UserNumberBean implements Serializable {
     private static final long serialVersionUID = 5443351151396868724L;
     Integer randomInt = null;
     Integer userNumber = null;
+    
     String response = null;
+    
     private long maximum=5;
     private long minimum=0;
 
