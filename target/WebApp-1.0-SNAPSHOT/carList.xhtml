@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"  xmlns:h="http://java.sun.com/jsf/html"  xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+    <title>List of cars</title>
+    <style type="text/css">
+        .tableUpdated {
+        	width: 90% !important;
+        	margin: 17px 58px 0 !important;
+        }
+        .btnSpace {
+            margin: 17px;
+        }
+        .ui-growl-title {
+            font-family: medium-content-sans-serif-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+            font-size: 18px;
+        }
+        .ui-growl-message p {
+            font-family: medium-content-sans-serif-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+            font-size: 15px;
+            font-weight: 900;
+        }
+
+        .ui-growl-message {
+    
+        }
+
+        .ui-growl-item-container {
+            background: rgba(72, 176, 30, 0.8);
+        }
+    </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</h:head>
+<h:body>
+    <!--<center><h2><h:outputText value="Car Records"/></h2></center>-->
+    <h:form id="carForm">
+        <p:growl id="msgs" showDetail="true" class="infoMessage"/>
+
+        <p:fieldset legend="Toggleable" toggleable="true" toggleSpeed="300" collapsed="true">
+            <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputText value="Just some text"></h:outputText>
+            </h:panelGrid>
+        </p:fieldset>
+
+        <h:dataTable id="carTable" binding="#{table}" value="#{car.getListOfCars()}" var="car" styleClass="table table-striped table-bordered tableUpdated">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{car.id}" />                
+            </h:column>
+            <h:column>
+                <f:facet name="header">Car Name</f:facet>
+                <h:outputText value="#{car.name}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Car Price</f:facet>
+                <h:outputText value="#{car.price}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Update</f:facet>
+                <h:commandButton id="submitButton" value="Edit" action="#{car.editCarDetailsById()}" styleClass="btn btn-primary">
+                    <f:param name="selectedCarId" value="#{car.id}" />
+                </h:commandButton>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton action="#{car.deleteCarById(car.id)}" value="Delete" styleClass="btn btn-danger" />
+            </h:column>
+        </h:dataTable>
+        <center><h:commandButton action="#{car.clearFields()}" value="Add New Car" styleClass="btn btn-success btnSpace" /></center>
+    </h:form>
+</h:body>
+</html>

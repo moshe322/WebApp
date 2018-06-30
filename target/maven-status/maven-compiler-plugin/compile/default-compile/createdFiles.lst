@@ -1,1 +1,4 @@
-com\site\webapp\UserNumberBean.class
+com\site\webapp\FieldsetView.class
+com\site\webapp\service\CarService.class
+com\site\webapp\bean\Car.class
+com\site\webapp\util\HibernateUtils.class

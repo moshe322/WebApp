@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.site.webapp.bean.Car" table="CARS" catalog="app">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="Name" type="string">
+            <column name="Name" length="30"/>
+        </property>
+        <property name="Price" type="integer">
+            <column name="Price" />
+        </property>
+    </class>
+</hibernate-mapping>
